@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Important Question 💘</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle, #ffdde1, #ee9ca7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Comic Sans MS', 'Poppins', cursive;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+      max-width: 90%;
+      position: relative;
+    }
+
+    h1 {
+      color: #ff3b6f;
+      font-size: 2.3rem;
+    }
+
+    p {
+      color: #555;
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+    }
+
+    button {
+      padding: 12px 26px;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    #yes {
+      background: #ff3b6f;
+      color: white;
+    }
+
+    #yes:hover {
+      transform: scale(1.15);
+    }
+
+    #no {
+      background: #ddd;
+      position: absolute;
+    }
+
+    .emoji {
+      position: fixed;
+      font-size: 22px;
+      animation: float 4s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-10vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="card">
+    <h1>Will you be my Valentine? 💘</h1>
+    <p>Please choose wisely. There *is* a right answer.</p>
+    <button id="yes">Yes 😍</button>
+    <button id="no">No 🙄</button>
+  </div>
+
+<script>
+  const no = document.getElementById("no");
+  const yes = document.getElementById("yes");
+  const card = document.getElementById("card");
+
+  no.addEventListener("mouseover", () => {
+    const x = Math.random() * 250 - 125;
+    const y = Math.random() * 250 - 125;
+    no.style.transform = `translate(${x}px, ${y}px)`;
+  });
+
+  yes.addEventListener("click", () => {
+    card.innerHTML = `
+      <h1>Correct Answer 🎉💖</h1>
+      <p>
+        Congratulations.<br>
+        You are now legally my Valentine.<br><br>
+        No refunds. No returns. 💅
+      </p>
+    `;
+    spawnLove();
+  });
+
+  function spawnLove() {
+    setInterval(() => {
+      const e = document.createElement("div");
+      e.className = "emoji";
+      e.innerText = ["💖","💘","😍","🥰","💅","😌"][Math.floor(Math.random()*6)];
+      e.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(e);
+      setTimeout(() => e.remove(), 4000);
+    }, 250);
+  }
+</script>
+
+</body>
+</html>
